@@ -10,6 +10,9 @@ Administrator: Student, module, grade, and progression management. Bulk grade up
 
 Student: View personal profile with limited editing of information, view grades for each module, view progression decision, messaging feature to contact Advisor of Studies
 
+![snap1](https://github.com/user-attachments/assets/7f291c30-691a-47da-af1a-449fd5eef476)
+![snap2](https://github.com/user-attachments/assets/81b6d057-a5c2-4fdb-b5e1-e490b25c7d84)
+
 ## How to Use
 
 Both web app and API need to be running in order to work.
