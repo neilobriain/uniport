@@ -1,0 +1,46 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Progression Rules Management</h1>
+            <hr>
+            <div class="contentInfoAlternativeCentre">
+                <p>
+                    Define or update progression criteria for pathways using the form below.
+                </p>
+                <div>
+                    <p>
+                    <form class="form" action="/progrulesupdate" method="post">
+                        <fieldset>
+                            <label>Pathway:
+                                <input name="subjectCode" type="text" style="text-transform: uppercase;" pattern=".{4}"
+                                    placeholder="IFSY" required>
+                            </label>
+                            <label>Year:
+                                <select name="yearLevel">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </label>
+                            <label>Minimum pass mark for modules:
+                                <input name="minPass" type="number" max="100" placeholder="40" required>
+                            </label>
+                            <label>Minimum average grade:
+                                <input name="minAverage" type="number" max="100" placeholder="50" required>
+                            </label>
+                            <label>Total credits required for progression:
+                                <input name="reqCredits" type="number" placeholder="120" required>
+                            </label>
+                            <label>Compulsory module(s) if applicable (separated by a comma, eg "IFSY133,BSAS125"):
+                                <input name="reqModules" type="text">
+                            </label>
+                            <button type="submit">Set</button>
+                        </fieldset>
+                    </form>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <a href="adminportal"><button>Back</button></a>
+        </div>
+<%- include('footer') %>

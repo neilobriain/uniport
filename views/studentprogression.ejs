@@ -1,0 +1,79 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Student Progression Statistics</h1>
+            <hr>
+            <div class="contentInfoAlternative">
+                <p>
+                    This section shows grades for each module that you are enrolled in. You can also view your
+                    progression decision, as well as a summary of progression criteria and whether they have been
+                    met.
+                </p>
+                <div>
+                    <details>
+                        <summary>View Grades</summary>
+                        <h2>Student Grades</h2>
+                        <p>
+                        <div class="tableflow">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Year</th>
+                                        <th>First Grade</th>
+                                        <th>First Result</th>
+                                        <th>Resit Grade</th>
+                                        <th>Resit Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% modules.forEach((grade)=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= grade.moduleTitle %>
+                                            </td>
+                                            <td>
+                                                <%= grade.acad_Yr.slice(2) %>
+                                            </td>
+                                            <td>
+                                                <%= grade.firstGrade %>
+                                            </td>
+                                            <td>
+                                                <%= grade.gradeResult %>
+                                            </td>
+                                            <td>
+                                                <%= grade.resitGrade %>
+                                            </td>
+                                            <td>
+                                                <%= grade.resitResult %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                        </p>
+                    </details>
+                </div>
+                <br>
+                <div>
+                    <details>
+                        <summary>Progression Criteria and Decision</summary>
+                        <h3>Your Progression Details</h3>
+                        <p>
+                            <strong>Progression Decision: </strong><%= progInfo.progression_success === 1 ? "Successful" : "Unsuccessful" %><br>
+                            <strong>Message: </strong><%= progInfo.progression_message %><br><br>
+                            <strong>Pathway and Year: </strong><%= pathwayRules.subjCode %>, Year <%= pathwayRules.year_level %><br>
+                            <strong>Total Credits: </strong><%= grades.totalCredits %>. 
+                            <strong>Required Credits: </strong><%= pathwayRules.req_credits %><br>
+                            <strong>Average Grade: </strong><%= grades.avgGrade %>. 
+                            <strong>Minimum Required Average Grade: </strong><%= pathwayRules.min_average %><br>                            
+                        </p>
+                    </details>
+                </div>
+            </div>
+            <hr>
+            <a href="studentportal"><button>Back</button></a>
+        </div>
+        <%- include('footer') %>

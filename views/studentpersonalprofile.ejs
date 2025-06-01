@@ -1,0 +1,25 @@
+<%- include('header') %>
+<%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Student Personal Profile</h1>
+            <hr>
+            <div class="contentInfo">
+                <img class="studentProfile" src="<%= myData[0].profile_image %>" alt="Student Photo">
+                <p>
+                    <strong>Name: </strong><%= myData[0].firstName + " " + myData[0].lastName %><br>
+                    <strong>Student Number: </strong><%= myData[0].sId %><br>
+                    <strong>Pathway: </strong><%= myData[0].sId.slice(3,7) %><br>
+                    <strong>Level/Stage of study: </strong>Year <%= level.data %><br>
+                    <strong> Contact information: </strong><%= myData[0].primary_email %><br>
+                    <strong> Secondary email: </strong><%= myData[0].secondary_email %><br>
+                    <strong> Profile image URL: </strong><%= myData[0].profile_image %><br>
+                    <a href="studenteditprofile"><button>Update Profile</button></a>
+                </p>
+            </div>
+            <hr>
+
+            <a href="studentportal"><button>Back</button></a>
+        </div>
+
+<%- include('footer') %>

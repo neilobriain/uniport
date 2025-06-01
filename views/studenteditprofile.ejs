@@ -1,0 +1,26 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Edit Personal Profile</h1>
+            <hr>
+            <div class="contentInfo">
+                <img class="studentProfile" id="studentPhoto" src="<%= myData[0].profile_image %>" alt="Student Photo">
+                <p>
+                <form class="form" action="/updatestudentprofile" method="post">
+                    <fieldset>
+                        <label>Secondary email:
+                            <input name="secondaryemail" type="text" placeholder="<%= myData[0].secondary_email %>">
+                        </label>
+                        <label>Profile image URL:
+                            <input name="profileurl" type="text" placeholder="<%= myData[0].profile_image %>">
+                        </label>
+                        <button type="submit">Update</button>
+                    </fieldset>
+                </form>
+                </p>
+            </div>
+            <hr>
+            <a href="studentpersonalprofile"><button class="error">Cancel</button></a>
+        </div>
+<%- include('footer') %>

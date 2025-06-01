@@ -1,0 +1,111 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Student Communication</h1>
+            <hr>
+            <div class="contentInfoAlternative">
+                <p>
+                    Messages received from administrators (e.g., announcements about grades or resits) will be shown
+                    here. You can also contact your Advisor of Studies if you require assistance with your progression
+                    status.</p>
+
+                <details>
+                    <summary>
+                        View Direct Messages
+                    </summary>
+                    <h2>Your Direct Messages</h2>
+
+                    <p>
+                    <div class="tableflow">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>From</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% indivData.forEach((message)=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= message.date.toString().slice(0,25) %>
+                                        </td>
+                                        <td>
+                                            <%= message.firstName %>
+                                                <%= message.lastName %>
+                                                    <%= message.email %>
+                                        </td>
+                                        <td>
+                                            <%= message.subject %>
+                                        </td>
+                                        <td>
+                                            <%= message.message %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    </p>
+                </details>
+                <br>
+                <details>
+                    <summary>
+                        View Group Notifications
+                    </summary>
+                    <h2>Your Group Notifications</h2>
+                    <p>
+                    <div class="tableflow">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Module</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% groupData.forEach((message)=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= message.date.toString().slice(0,25) %>
+                                        </td>
+                                        <td>
+                                            <%= message.moduleTitle %>
+                                        </td>
+                                        <td>
+                                            <%= message.subject %>
+                                        </td>
+                                        <td>
+                                            <%= message.message %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    </p>
+                </details>
+                <br>
+                <details>
+                    <summary>Contact Advisor of Studies</summary>
+                    <h2>Message the AoS Postbox</h2>
+                    <form class="form" action="/sendmessageaos" method="post">
+                        <fieldset>
+                            <label>Message:
+                                <textarea name="messageBody" rows="5" placeholder="Write your message here..."
+                                    required></textarea>
+                            </label>
+                            <button type="submit">Send</button>
+                        </fieldset>
+                    </form>
+                </details>
+            </div>
+            <hr>
+            <a href="studentportal"><button>Back</button></a>
+        </div>
+<%- include('footer') %>

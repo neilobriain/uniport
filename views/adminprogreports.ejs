@@ -1,0 +1,88 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Progression Reports</h1>
+            <hr>
+            <div class="contentInfoAlternativeCentre">
+                <p>
+                    Enter a Student ID to calculate their grade data and show student summary.
+                </p>
+                <div>
+                    <form class="form" action="/adminprogstudent" method="post">
+                        <fieldset>
+                            <label>Student ID:
+                                <input name="studentSearch" type="text" pattern="{.15}" placeholder="22-IFSY-1234567"
+                                    required>
+                            </label>
+                            <button type="submit">Calculate</button>
+                        </fieldset>
+                    </form>
+                    <p>
+                        <strong>Student ID: </strong><%= sId %><br>
+                        <strong>Average Grade: </strong><%= data.avgGrade %><br>
+                        <strong>Total Credits: </strong><%= data.totalCredits %><br>
+                        <strong>Progression Status: </strong><%= prog.progression_success === 1 ? "Successful" : "Unsuccessful" %><br>
+                        <strong>Message: </strong><%= prog.progression_message %><br>
+                        <strong>Modules failed on first attempt: </strong><br>
+                        (format: <em>Module title, catalog code, resit result</em>)<br><%= failed %>
+                    </p>
+                </div>
+                <hr>
+                <a href="/adminanalytics"><button>View Analytics</button></a>
+                <hr>
+                <div>
+                    <details>
+                        <summary>
+                            Generate Progression Decisions
+                        </summary>
+                        <p>
+                            Automatically calculate progression outcomes for all students based on grades and
+                            current progression rules by selecting the button below. This is useful to ensure
+                            that the system uses the most up-to-date progression rules on which to base outcomes. 
+                            Note that any adjustments for specific students will need to be reapplied.
+                        </p>
+                        <p>
+                        <form action="/genprogoutcomes" method="POST">
+                            <button type="submit">Generate Progression Outcomes</button>
+                        </form>
+                        </p>
+                    </details>
+                </div>
+                <br>
+                <div>
+                    <details>
+                        <summary>
+                            Adjust Progression Result for a Student
+                        </summary>
+                        <p>
+                            Adjust progression results for a specific student if required
+                            (e.g., applying mitigation for extenuating circumstances).
+                        <form class=" form" action="/adjustprogresult" method="post">
+                            <fieldset>
+                                <label>Student ID:
+                                    <input name="studentID" type="text" pattern=".{15}"
+                                        placeholder="22-IFSY-1234567" required>
+                                </label>
+                                <label>Progression Status:
+                                <select name="progSuccess">
+                                    <option value="1">Successful</option>
+                                    <option value="0">Unsuccessful</option>
+                                </select>
+                                </label>
+                                <label>Progression Message:
+                                    <input name="progMessage" type="text" required>
+                                </label>
+                                <button type="submit">Adjust</button>
+                            </fieldset>
+                        </form>
+                        </p>
+                    </details>
+                </div>
+            </div>
+            <hr>
+
+            <a href="adminportal"><button>Back</button></a>
+        </div>
+
+<%- include('footer') %>

@@ -1,0 +1,98 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Module Management</h1>
+            <hr>
+            <div class="contentInfoAlternativeCentre">
+                <p>
+                    Information on modules can be retrieved here. Search for modules based on name (or part of it),
+                    module code, or pathway code in the search box below. To create a new module, select the option
+                    below.
+                </p>
+                <div>
+                    <form class="form" action="/adminsearchmodule" method="post">
+                        <fieldset>
+                            <label>Module Search:
+                                <input name="moduleSearch" type="text" required>
+                            </label>
+                            <button type="submit">Search</button>
+                        </fieldset>
+                    </form>
+
+                    <p>
+                        Search Results:
+                    <div class="tableflow">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Code</th>
+                                    <th>Credits</th>
+                                    <th>Semester</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% results.forEach((module)=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= module.moduleTitle %>
+                                        </td>
+                                        <td>
+                                            <%= module.subjCode + module.subjCatalog %>
+                                        </td>
+                                        <td>
+                                            <%= module.creditCount %>
+                                        </td>
+                                        <td>
+                                            <%= module.semModule %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    </p>
+                </div>
+                <hr>
+                <details>
+                    <summary>
+                        Create a New Module
+                    </summary>
+                    <h2>Create a New Module</h2>
+                    <p>
+                    <form class="form" action="/createupdatemodule" method="post">
+                        <fieldset>
+                            <label>Module Title:
+                                <input name="moduleTitle" type="text" minlength="3" placeholder="Web Development"
+                                    required>
+                            </label>
+                            <label>Pathway:
+                                <input name="subjectCode" type="text" style="text-transform: uppercase;"
+                                    pattern=".{4,4}" placeholder="IFSY" required>
+                            </label>
+                            <label>Course Code:
+                                <input name="subjectCatalog" type="number" min="100" max="999" placeholder="262"
+                                    required>
+                            </label>
+                            <label>CAT (credit) Value:
+                                <input name="credits" type="number" placeholder="20" required>
+                            </label>
+                            <label>Semester:
+                                <select name="semester">
+                                    <option value="autumn">Autumn</option>
+                                    <option value="spring">Spring</option>
+                                    <option value="full">Full Year</option>
+                                </select>
+                            </label>
+                            <button type="submit">Create</button>
+                        </fieldset>
+                    </form>
+                    </p>
+                </details>
+            </div>
+            <hr>
+
+            <a href="adminportal"><button>Back</button></a>
+        </div>
+        <%- include('footer') %>

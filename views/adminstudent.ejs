@@ -1,0 +1,141 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Student Management</h1>
+            <hr>
+            <div class="contentInfoAlternativeCentre">
+                <p>
+                    Information on students can be retrieved here. Search for students based on first or last name, or
+                    by student ID.
+                    Student records can be viewed, created, updated, or deleted.
+                </p>
+                <div>
+                    <form class="form" action="/adminsearchstudent" method="post">
+                        <fieldset>
+                            <label>Student Search:
+                                <input name="studentSearch" type="text" required>
+                            </label>
+                            <button type="submit">Search</button>
+                        </fieldset>
+                    </form>
+                    <br><button class="error" id="clearButton">Clear Results</button>
+
+                    <p>
+                        Search Results:
+                    <div class="tableflow">
+                        <table id="studentTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Student ID</th>
+                                    <th>Pathway</th>
+                                    <th>Entry Level</th>
+                                    <th>Full / Part</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% results.forEach((student)=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= student.firstName +" "+ student.lastName %> 
+                                    </td>
+                                    <td>
+                                        <%= student.sId %>
+                                    </td>
+                                    <td>
+                                        <%= student.sId?.slice(3,7).toUpperCase() || '' %>
+                                    </td>
+                                    <td>
+                                        <%= student.entryLevel %>
+                                    </td>
+                                    <td>
+                                        <%= student.statusStudy %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                        </div>
+                    </p>
+                </div>
+                <hr>
+                <div>
+                    <details>
+                        <summary>
+                            Create / Update Student Record
+                        </summary>
+                        <h2>Student Record</h2>
+                        <p>
+                            <form class=" form" action="/createupdatestudent" method="post">
+                                                <fieldset>
+                                                    <label>Student ID:
+                                                        <input name="studentID" type="text" pattern=".{15}"
+                                                            placeholder="22-IFSY-1234567" required>
+                                                    </label>
+                                                    <label>Last Name:
+                                                        <input name="lastName" type="text" required>
+                                                    </label>
+                                                    <label>First Name:
+                                                        <input name="firstName" type="text" required>
+                                                    </label>
+                                                    <label>Study Status:
+                                                        <select name="studyStatus">
+                                                            <option value="F">Full Time</option>
+                                                            <option value="P">Part Time</option>
+                                                        </select>
+                                                    </label>
+                                                    <label>Entry Level:
+                                                        <select name="entryLevel">
+                                                            <option value="L1">Year 1</option>
+                                                            <option value="L2">Year 2</option>
+                                                        </select>
+                                                    </label>
+                                                    <label>Secondary email:
+                                                        <input name="secondaryEmail" type="email" required>
+                                                    </label>
+                                                    <label>Profile image URL:
+                                                        <input name="profileImage" type="text" required>
+                                                    </label>
+                                                    <button type="submit">Create / Update</button>
+                                                </fieldset>
+                                                </form>
+                                                </p>
+                                                </details>
+                    </div>
+                    <br>
+                    <div>
+                        <details>
+                            <summary>
+                                Remove a Student
+                            </summary>
+                            <h2>Remove a Student</h2>
+                            <p>
+                            <form class=" form" action="/deletestudent" method="post"
+                                onsubmit="return confirm('Are you sure you want remove this student from the system? It cannot be undone.');">
+                                <fieldset>
+                                    <label>Student ID:
+                                        <input name="studentID" type="text" pattern=".{15}"
+                                            placeholder="22-IFSY-1234567" required>
+                                    </label>
+                                    <button class="error" type="submit">Delete</button>
+                                </fieldset>
+                            </form>
+                            </p>
+                        </details>
+                    </div>
+                </div>
+                <hr>
+
+                <a href="adminportal"><button>Back</button></a>
+            </div>
+
+            <script>
+                document.getElementById("clearButton").addEventListener("click", function () {
+                    const table = document.getElementById("studentTable");
+                    table.innerHTML = "";
+                });
+            </script>
+
+
+            <%- include('footer') %>

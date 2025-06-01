@@ -1,0 +1,26 @@
+{
+  "name": "uniport",
+  "version": "1.0.0",
+  "description": "Academic Progression Monitoring Web App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.eeecs.qub.ac.uk/40463802/uniport"
+  },
+  "author": "Neil Ó Briain",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "multer": "^1.4.5-lts.2",
+    "mysql2": "^3.14.0"
+  }
+}

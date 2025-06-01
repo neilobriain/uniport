@@ -1,0 +1,19 @@
+<%- include('header') %>
+<%- include('navbar') %>
+
+    <div class="mainContent">
+        <h1>Progression Statistics</h1>
+        <hr>
+        <div class="contentInfoAlternative">
+            <p>
+                Total enrolments: <%= total %><br>
+                No. of exams passed on first attempt: <%= passed %> (<%- Math.round(passed/total * 100); %>%)<br>
+                No. of exams failed on first attempt: <%= failed %> (<%- Math.round(failed/total * 100); %>%)<br>
+                No. of exams resat: <%= resat %> (<%- Math.round(resat/total * 100); %>%)
+            </p>
+        </div>
+        <hr>
+
+        <a href="adminprogreports"><button>Back</button></a>
+    </div>
+<%- include('footer') %>

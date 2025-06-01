@@ -1,0 +1,39 @@
+<%- include('header') %>
+<%- include('navbar') %>
+
+    <div class="mainContent">
+        <h1>Welcome, <%= myData[0].firstName %></h1>
+        <div class="gallery">
+
+            <div class="item">
+                <div class="border"></div>
+                <a href="studentpersonalprofile">
+                    <img src="user.svg">
+                    <p>Personal Profile</p>
+                </a>
+                <div class="border"></div>
+            </div>
+
+            <div class="item">
+                <div class="border"></div>
+                <a href="studentprogression">
+                    <img src="stats.svg">
+                    <p>Progression Statistics</p>
+                </a>
+                <div class="border"></div>
+            </div>
+
+            <div class="item">
+                <div class="border"></div>
+                <a href="studentcommunication">
+                    <img src="envelope.svg">
+                    <p>Communication</p>
+                </a>
+                <div class="border"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+<%- include('footer') %>

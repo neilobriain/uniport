@@ -1,0 +1,172 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Grade Management</h1>
+            <hr>
+            <div class="contentInfoAlternativeCentre">
+                <p>
+                    Grades for each module can be managed here. To create or update a student's grade data for a
+                    retrieved module, select the option below. Bulk student grade entry for a chosen module is also
+                    available.
+                </p>
+                <div>
+                    <form class="form" action="/adminsearchgrade" method="post">
+                        <fieldset>
+                            <label>Module Code:
+                                <input name="moduleSearch" type="text" placeholder="IFSY123"
+                                    style="text-transform: uppercase;" required>
+                            </label>
+                            <button type="submit">Retrieve</button>
+                        </fieldset>
+                    </form>
+                    <br><button class="error" id="clearButton">Clear Results</button>
+
+                    <h3>
+                        <%= results[0] ? results[0].moduleTitle || '' : '' %>
+                    </h3>
+                    <p>
+                    <div class="tableflow">
+                        <table id="gradesTable">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Year</th>
+                                    <th>First Grade</th>
+                                    <th>First Result</th>
+                                    <th>Resit Grade</th>
+                                    <th>Resit Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% results.forEach((grade)=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= grade.sId %><br>
+                                                <%= grade.firstName %>
+                                                    <%= grade.lastName %>
+                                        </td>
+                                        <td>
+                                            <%= grade.acad_Yr.slice(2) %>
+                                        </td>
+                                        <td>
+                                            <%= grade.firstGrade %>
+                                        </td>
+                                        <td>
+                                            <%= grade.gradeResult %>
+                                        </td>
+                                        <td>
+                                            <%= grade.resitGrade %>
+                                        </td>
+                                        <td>
+                                            <%= grade.resitResult %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    </p>
+                </div>
+                <hr>
+                <div>
+                    <details>
+                        <summary>Create / Update Student Grade Data</summary>
+                        <h2>Student Grade Data</h2>
+                        <p>
+                        <form class="form" action="/createupdategrade" method="post">
+                            <fieldset>
+                                <label>Student ID:
+                                    <input name="studentID" type="text" pattern=".{15,15}" placeholder="22-IFSY-1234567"
+                                        style="text-transform: uppercase;" required>
+                                </label>
+                                <label>Academic Year:
+                                    <select name="acadYear">
+                                        <option value="AY2023_24">AY2023_24</option>
+                                        <option value="AY2022_23">AY2022_23</option>
+                                        <option value="AY2021_22">AY2021_22</option>
+                                    </select>
+                                </label>
+                                <label>Module Code:
+                                    <input name="moduleCode" type="text" pattern=".{7,7}" placeholder="IFSY123"
+                                        style="text-transform: uppercase;" required>
+                                </label>
+                                <label>First Grade:
+                                    <input name="firstGrade" type="number" min="0" max="100" required>
+                                </label>
+                                <label>First Grade Result:
+                                    <select name="firstGradeResult">
+                                        <option value="pass">Pass</option>
+                                        <option value="pass capped">Pass Capped</option>
+                                        <option value="excused">Excused</option>
+                                        <option value="absent">Absent</option>
+                                        <option value="fail">Fail</option>
+                                    </select>
+                                </label>
+                                <label>Resit Grade (if applicable, otherwise leave blank):
+                                    <input name="resitGrade" type="number" min="0" max="100">
+                                </label>
+                                <label>Resit Grade Result:
+                                    <select name="resitGradeResult">
+                                        <option value="">Not Applicable</option>
+                                        <option value="pass">Pass</option>
+                                        <option value="pass capped">Pass Capped</option>
+                                        <option value="excused">Excused</option>
+                                        <option value="absent">Absent</option>
+                                        <option value="fail">Fail</option>
+                                    </select>
+                                </label>
+                                <button type="submit">Create / Update</button>
+                            </fieldset>
+                        </form>
+                        </p>
+                    </details>
+                </div>
+                <br>
+                <div>
+                    <details>
+                        <summary>Bulk Upload Student Grades</summary>
+                        <h2>CSV Upload</h2>
+                        <p>
+                            Upload student grade data for a module in bulk, via a CSV file. Please ensure that the
+                            following format is used:
+                        <ul>
+                            <li>No headers in the file, each line is processed.</li>
+                            <li>Values are delineated by a comma.</li>
+                            <li>Value structure is as follows:<br>
+                                Student ID, Academic Year code, First Grade, First Grade Result, Resit
+                                Grade, Resit Grade Result<br>
+                                eg. 22-IFSY-1234567,AY2022_23,0,excused,55,pass capped
+                            </li>
+                            <li>Each line denotes a new entry, and each entry should only have one student's grades.
+                            </li>
+                        </ul>
+                        <form class="form" action="/admincsvgrade" method="post" enctype="multipart/form-data">
+                            <fieldset>
+                                <label>Module Code:
+                                    <input name="moduleCode" type="text" pattern=".{7,7}" placeholder="IFSY123"
+                                        style="text-transform: uppercase;" required>
+                                </label>
+                                <label>Upload CSV:
+                                    <input name="csvFile" type="file" accept=".csv" required>
+                                </label>
+                                <button type="submit">Upload</button>
+                            </fieldset>
+                        </form>
+                        </p>
+                    </details>
+                </div>
+            </div>
+            <hr>
+
+            <a href="adminportal"><button>Back</button></a>
+        </div>
+
+        <script>
+            document.getElementById("clearButton").addEventListener("click", function () {
+                const table = document.getElementById("gradesTable");
+                table.innerHTML = "";
+            });
+        </script>
+
+<%- include('footer') %>

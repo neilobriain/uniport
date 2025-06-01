@@ -1,0 +1,22 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>CSV Upload Successful</h1>
+            <hr>
+            <div class="contentInfoAlternativeCentre">
+                <p>
+                    Grades have been updated with the information below.
+                </p>
+                <p>
+                    <strong>Student ID, Academic Year Code, First Grade, First Grade Result, Resit Grade, Resit Grade Result</strong><br>
+                    <% results.forEach((grade)=> { %>
+                        <%= grade %><br>
+                    <% }) %>
+                </p>
+            </div>
+            <hr>
+
+            <a href="adminportal"><button>Back</button></a>
+        </div>
+        <%- include('footer') %>

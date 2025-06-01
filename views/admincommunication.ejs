@@ -1,0 +1,109 @@
+<%- include('header') %>
+    <%- include('navbar') %>
+
+        <div class="mainContent">
+            <h1>Messages & Notifications</h1>
+            <hr>
+            <div class="contentInfoAlternative">
+                <p>
+                    You can send a message to an individual or cohort of students from this page. If you are an Advisor
+                    of
+                    Studies, you can view student requests in the Aos Postbox.
+                </p>
+
+                <div>
+                    <details>
+                        <summary>
+                            Individual Message
+                        </summary>
+                        <h2>Send an Individual Message</h2>
+                        <p>
+                        <form class="form" action="/sendmessageindiv" method="post">
+                            <fieldset>
+                                <label>Student ID:
+                                    <input name="studentID" type="text" placeholder="22-IFSY-1234567" required>
+                                </label>
+                                <label>Subject:
+                                    <input name="subject" type="text" placeholder="Subject" required>
+                                </label>
+                                <label>Message:
+                                    <textarea name="messageBody" rows="5" placeholder="Write your message here..."
+                                        required></textarea>
+                                </label>
+                                <button type="submit">Send</button>
+                            </fieldset>
+                        </form>
+                        </p>
+                    </details>
+                </div>
+                <br>
+                <div>
+                    <details>
+                        <summary>
+                            Group Notification
+                        </summary>
+                        <h2>Send a Group Message</h2>
+                        <p>
+                        <form class="form" action="/sendmessagegroup" method="post">
+                            <fieldset>
+                                <label>Module Code:
+                                    <input name="moduleCode" type="text" placeholder="IFSY130" required>
+                                </label>
+                                <label>Subject:
+                                    <input name="subject" type="text" placeholder="Subject" required>
+                                </label>
+                                <label>Message:
+                                    <textarea name="messageBody" rows="5" placeholder="Write your message here..."
+                                        required></textarea>
+                                </label>
+                                <button type="submit">Send</button>
+                            </fieldset>
+                        </form>
+                        </p>
+                    </details>
+                </div>
+                <br>
+                <div>
+                    <details>
+                        <summary>
+                            AoS Postbox
+                        </summary>
+                        <h2>Received Messages</h2>
+                        <p>
+                        <div class="tableflow">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>From</th>
+                                        <th>Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% messagesData.forEach((message)=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= message.date.toString().slice(0,25) %>
+                                            </td>
+                                            <td>
+                                                <%= message.firstName %>
+                                                    <%= message.lastName %>
+                                                        <%= message.sID %>
+                                            </td>
+                                            <td>
+                                                <%= message.message %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                        </p>
+                    </details>
+                </div>
+            </div>
+            <hr>
+
+            <a href="adminportal"><button>Back</button></a>
+        </div>
+        <%- include('footer') %>

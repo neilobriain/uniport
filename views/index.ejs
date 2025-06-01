@@ -1,0 +1,44 @@
+<%- include('header') %>
+
+    <div class="mainContent">
+
+        <h1>Welcome to the University Portal</h1>
+
+        <div class="sidebyside">
+
+            <div class="lcont">
+                <p>
+                    This website provides a platform to support students and administrators in monitoring student
+                    performance and progression. Please sign in to access the portal.
+                </p>
+
+                <p>
+                <form class="form" action="/login" method="post">
+                    <fieldset role="group">
+
+                        <label>User ID:
+                            <input name="id_field" type="text" placeholder="Enter your User ID" required>
+                        </label>
+                        <label>Password:
+                            <input name="password_field" type="password" placeholder="Enter your Password" required>
+                        </label>
+                        <button type="submit">Sign In</button>
+                    </fieldset>
+                </form>
+                </p>
+
+            </div>
+
+            <div class="rcont">
+                <img class="studentimg" src="studentwithfolder.jpg" alt="Student">
+            </div>
+
+        </div>
+        <p class="smalltext">Having Problems Logging in - please contact the Student Helpline on +44 (0)28
+            1234 5678 or email
+            <a href="mailto:help@uniport.ac.uk">help@uniport.ie</a>
+        </p>
+
+    </div>
+
+<%- include('footer') %>

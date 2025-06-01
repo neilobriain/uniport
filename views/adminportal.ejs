@@ -1,0 +1,62 @@
+<%- include('header') %>
+<%- include('navbar') %>
+
+    <div class="mainContent">
+        <h1>Welcome, <%= myData[0].firstName %></h1>
+        <div class="gallery">
+
+            <div class="item">
+                <div class="border"></div>
+                <a href="adminstudent">
+                    <img src="users-alt.svg">
+                    <p>Student Management</p>
+                </a>
+                <div class="border"></div>
+            </div>
+            <div class="item">
+                <div class="border"></div>
+                <a href="adminmodule">
+                    <img src="modules.svg">
+                    <p>Module Management</p>
+                </a>
+                <div class="border"></div>
+            </div>
+            <div class="item">
+                <div class="border"></div>
+                <a href="admingrade">
+                    <img src="check.svg">
+                    <p>Grade Management</p>
+                </a>
+                <div class="border"></div>
+            </div>
+
+            <div class="item">
+                <div class="border"></div>
+                <a href="adminprogmgmt">
+                    <img src="settings-sliders.svg">
+                    <p>Progression Rules</p>
+                </a>
+                <div class="border"></div>
+            </div>
+            <div class="item">
+                <div class="border"></div>
+                <a href="adminprogreports">
+                    <img src="stats.svg">
+                    <p>Progression Reports</p>
+                </a>
+                <div class="border"></div>
+            </div>
+            <div class="item">
+                <div class="border"></div>
+                <a href="admincommunication">
+                    <img src="envelope.svg">
+                    <p>Messages & Notifications</p>
+                </a>
+                <div class="border"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+<%- include('footer') %>
